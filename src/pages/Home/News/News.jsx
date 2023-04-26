@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Button, Card } from 'react-bootstrap';
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
+import EditorsInsight from '../../Shared/EditorsInsight/EditorsInsight';
 
 const News = () => {
     const [news, setNews] = useState([])
@@ -24,7 +25,7 @@ const News = () => {
     return (
         <div>
             <h4 className='mb-3'>Dragon News</h4>
-            <Card>
+            <Card className='mb-4'>
                 <Card.Body>
                     <Card.Img className='mb-3' variant="top" src={image_url} />
                     <Card.Title>{title}</Card.Title>
@@ -38,6 +39,8 @@ const News = () => {
                     </Button>
                 </Card.Body>
             </Card>
+
+            <EditorsInsight></EditorsInsight>
         </div>
     );
 };
