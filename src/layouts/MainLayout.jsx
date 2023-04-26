@@ -12,7 +12,7 @@ const MainLayout = () => {
             <Header></Header>
             <BreakingNews></BreakingNews>
             <NavigationBar></NavigationBar>
-            <div className="row">
+            <div className="row my-5">
                 <div className='col-3'>
                     <LeftNav></LeftNav>
                 </div>
