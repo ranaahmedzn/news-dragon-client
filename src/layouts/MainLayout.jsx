@@ -1,8 +1,10 @@
 import React from 'react';
 import Header from '../pages/Shared/Header/Header';
-import { Container } from 'react-bootstrap';
 import BreakingNews from '../pages/Shared/BreakingNews/BreakingNews';
 import NavigationBar from '../pages/Shared/NavigationBar/NavigationBar';
+import LeftNav from '../pages/Shared/LeftNav/LeftNav';
+import RightNav from '../pages/Shared/RightNav/RightNav';
+import Category from '../pages/Home/Category/Category';
 
 const MainLayout = () => {
     return (
@@ -10,6 +12,19 @@ const MainLayout = () => {
             <Header></Header>
             <BreakingNews></BreakingNews>
             <NavigationBar></NavigationBar>
+            <div className="row">
+                <div className='col-3'>
+                    <LeftNav></LeftNav>
+                </div>
+
+                <div className="col-6">
+                    <Category></Category>
+                </div>
+
+                <div className='col-3'>
+                    <RightNav></RightNav>
+                </div>
+            </div>
         </div>
 
     );
