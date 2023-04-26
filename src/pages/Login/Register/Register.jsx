@@ -31,7 +31,7 @@ const Register = () => {
                 </Form.Group>
                 <input className='btn-submit' type="submit" value="Login" />
                 <p className="text-muted text-center mb-0 mt-3">
-                    Already have an account? <Link className='text-decoration-none fw-semibold' to={'/login/login'}>Login</Link>
+                    Already have an account? <Link className='register-link' to={'/login/login'}>Login</Link>
                 </p>
             </Form>
         </div>

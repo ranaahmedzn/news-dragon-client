@@ -19,3 +19,11 @@
     font-weight: 600;
     color: white;
 }
+.login-link, .register-link{
+    text-decoration: none;
+    font-weight: 600;
+    color: #F75B5F;
+}
+.login-link:hover, .register-link:hover{
+    color: #ff3a41;
+}   

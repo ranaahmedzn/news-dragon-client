@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee';
 
 const BreakingNews = () => {
     return (
-        <div className='bg-dark mb-3 p-3 d-flex'>
+        <div style={{background: '#403F3F'}} className='mb-3 p-3 d-flex'>
             <Button variant="danger" className='me-3'>Latest</Button>
             <Marquee className='text-white'
             speed={70}
