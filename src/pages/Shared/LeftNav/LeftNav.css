@@ -1,0 +1,14 @@
+.category{
+    padding: 15px 0 15px 20px;
+    margin: 0;
+    border-radius: 7px;
+}
+.category a{
+    font-weight: 500;
+    color: gray;
+}
+.category:hover, .category:hover a{
+    cursor: pointer;
+    background-color: #E7E7E7;
+    color: black;
+}
