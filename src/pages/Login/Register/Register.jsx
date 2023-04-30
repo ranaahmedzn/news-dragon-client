@@ -10,7 +10,7 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-    const {createUser} = useContext(AuthContext)
+    const {createUser, updateUserProfile} = useContext(AuthContext)
 
     const handleRegister = (event) => {
         event.preventDefault()
@@ -26,6 +26,10 @@ const Register = () => {
             console.log(createdUser)
             toast.success("Register successful!")
             form.reset()
+
+            updateUserProfile(name, photoUrl)
+            .then(() => console.log('User profile updated'))
+            .catch(err => console.log(err))
         })
         .catch(error => {
             console.log(error.message)

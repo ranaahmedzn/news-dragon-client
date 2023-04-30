@@ -7,7 +7,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { toast } from 'react-hot-toast';
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext)
+    const {signInUser} = useContext(AuthContext)
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -17,7 +17,7 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password)
 
-        signIn(email, password)
+        signInUser(email, password)
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser)
