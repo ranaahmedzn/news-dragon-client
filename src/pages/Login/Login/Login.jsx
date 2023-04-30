@@ -2,12 +2,18 @@ import React, { useContext } from 'react';
 import './Login.css'
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { toast } from 'react-hot-toast';
 
 const Login = () => {
     const {signInUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    // console.log(location)
+
+    const from = location.state?.from?.pathname || '/category/0'
+    console.log(from)
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -15,7 +21,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
 
         signInUser(email, password)
         .then(result => {
@@ -23,6 +29,7 @@ const Login = () => {
             console.log(loggedUser)
             toast.success('Login successful!')
             form.reset()
+            navigate(from)
         })
         .catch(error => {
             console.log(error.message)

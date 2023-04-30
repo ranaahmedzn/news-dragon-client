@@ -10,7 +10,7 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
-    const {createUser, updateUserProfile} = useContext(AuthContext)
+    const {createUser, updateUserProfile, sendVerificationEmail} = useContext(AuthContext)
 
     const handleRegister = (event) => {
         event.preventDefault()
@@ -29,6 +29,10 @@ const Register = () => {
 
             updateUserProfile(name, photoUrl)
             .then(() => console.log('User profile updated'))
+            .catch(err => console.log(err))
+
+            sendVerificationEmail()
+            .then(() => toast.success('Please check your inbox to verify your email!'))
             .catch(err => console.log(err))
         })
         .catch(error => {
@@ -53,11 +57,11 @@ const Register = () => {
             <Form onSubmit={handleRegister} className='form-container'>
                 <h4 className='text-center'>Register your account</h4>
                 <hr className='mb-4' />
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Your name</Form.Label>
                     <Form.Control type="text" name='name' className='commonInput' placeholder="Enter your name" required/>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formBasicPhoto">
                     <Form.Label>Photo URL</Form.Label>
                     <Form.Control type="text" name='photoUrl' className='commonInput' placeholder="Enter your photo url" required/>
                 </Form.Group>
@@ -68,7 +72,7 @@ const Register = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handlePassword} type="password" className='commonInput' id='password' placeholder="Enter your password" required/>
+                    <Form.Control onChange={handlePassword} type="password" className='commonInput' placeholder="Enter your password" required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Accept Terms & Conditions" />

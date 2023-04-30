@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext(null)
@@ -8,11 +8,13 @@ const auth = getAuth(app)
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
+    const [loader, setLoader] = useState(true)
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, loggedUser => {
             setUser(loggedUser)
-            // console.log(loggedUser)
+            console.log(loggedUser)
+            setLoader(false)
         })
 
         return () => {
@@ -21,14 +23,17 @@ const AuthProvider = ({children}) => {
     }, [])
 
     const createUser = (email, password) =>{
+        setLoader(true)
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const signInUser = (email, password) => {
+        setLoader(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const signOutUser = () => {
+        setLoader(true)
         return signOut(auth);
     }
 
@@ -38,12 +43,18 @@ const AuthProvider = ({children}) => {
         });
     }
 
+    const sendVerificationEmail = () => {
+        return sendEmailVerification(auth.currentUser);
+    }
+
     const authInfo = {
         user,
+        loader,
         createUser,
         signInUser,
         signOutUser,
-        updateUserProfile
+        updateUserProfile,
+        sendVerificationEmail
     }
 
     return (

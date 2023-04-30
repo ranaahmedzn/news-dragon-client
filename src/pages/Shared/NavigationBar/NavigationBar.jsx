@@ -24,7 +24,7 @@ const NavigationBar = () => {
                 </Nav>
                 <div className='d-flex align-items-center gap-3'>
                     {
-                        user?.photoURL && <img className='profile-img' src={user.photoURL} alt="" />
+                        user && user?.photoURL && <img className='profile-img' src={user.photoURL} alt="" />
                     }
                     {
                         user && !user?.photoURL && <span><FaUserCircle style={{ fontSize: '36px' }} /></span>

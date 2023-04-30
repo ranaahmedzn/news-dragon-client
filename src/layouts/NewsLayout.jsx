@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../pages/Shared/Header/Header';
 import RightNav from '../pages/Shared/RightNav/RightNav';
 import News from '../pages/Home/News/News';
+import { Outlet } from 'react-router-dom';
 
 const NewsLayout = () => {
     return (
@@ -9,7 +10,7 @@ const NewsLayout = () => {
             <Header></Header>
             <div className="row my-5">
                 <div className='col-9'>
-                    <News />
+                    <Outlet />
                 </div>
 
                 <div className='col-3'>
