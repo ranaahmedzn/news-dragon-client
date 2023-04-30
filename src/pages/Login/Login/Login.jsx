@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css'
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
+    const [show, setShow] = useState(false)
     const {signInUser} = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
     // console.log(location)
 
     const from = location.state?.from?.pathname || '/category/0'
-    console.log(from)
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -46,9 +47,15 @@ const Login = () => {
                     <Form.Control type="email" name='email' className='commonInput' placeholder="Enter your email" required/>
                 </Form.Group>
 
-                <Form.Group className="mb-4" controlId="formBasicPassword">
+                <Form.Group className="mb-4 position-relative" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name='password' className='commonInput' placeholder="Enter your password" required/>
+                    <Form.Control type={show ? "text" : "password"} name='password' className='commonInput' placeholder="Enter your password" required/>
+                    
+                    {
+                        show ? <FaEyeSlash onClick={() => setShow(!show)} className='eye-icon position-absolute'></FaEyeSlash>
+                        :<FaEye onClick={() => setShow(!show)} className='eye-icon position-absolute'></FaEye>
+                    }
+
                 </Form.Group>
                 <input className='btn-submit' type="submit" value="Login" />
                 <p className="text-muted text-center mb-0 mt-3">

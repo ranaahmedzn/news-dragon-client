@@ -26,4 +26,11 @@
 }
 .login-link:hover, .register-link:hover{
     color: #ff3a41;
-}   
+}
+.eye-icon{
+    top: 60%;
+    right: 3%;
+}
+.eye-icon:hover{
+    cursor: pointer;
+}

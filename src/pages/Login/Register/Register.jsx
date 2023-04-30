@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { toast } from 'react-hot-toast';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
+    const [show, setShow] = useState(false)
+    const [agree, setAgree] = useState(false)
     const {createUser, updateUserProfile, sendVerificationEmail} = useContext(AuthContext)
 
     const handleRegister = (event) => {
@@ -51,6 +54,10 @@ const Register = () => {
         const passwordInputValue = e.target.value;
         setPassword(passwordInputValue)
     }
+    
+    const handleTerms = (e) => {
+        setAgree(e.target.checked)
+    }
 
     return (
         <div style={{ width: '100%', maxHeight: '100%' }} className='py-5'>
@@ -63,21 +70,27 @@ const Register = () => {
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPhoto">
                     <Form.Label>Photo URL</Form.Label>
-                    <Form.Control type="text" name='photoUrl' className='commonInput' placeholder="Enter your photo url" required/>
+                    <Form.Control type="text" name='photoUrl' className='commonInput' placeholder="Enter your photo url"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control onChange={handleEmail} type="email" name='email' className='commonInput' placeholder="Enter your email" required/>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3 position-relative" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handlePassword} type="password" className='commonInput' placeholder="Enter your password" required/>
+                    <Form.Control onChange={handlePassword} type={show ? "text" : "password"} className='commonInput' placeholder="Enter your password" required/>
+
+                    {
+                        show ? <FaEyeSlash onClick={() => setShow(!show)} className='eye-icon position-absolute'></FaEyeSlash>
+                        :<FaEye onClick={() => setShow(!show)} className='eye-icon position-absolute'></FaEye>
+                    }
+
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Accept Terms & Conditions" />
+                    <Form.Check onClick={handleTerms} type="checkbox" label={<>Accept <span className='fw-semibold text-primary'>Terms & Conditions</span></>} />
                 </Form.Group>
-                <input className='btn-submit' type="submit" value="Register" />
+                <input className='btn-submit' type="submit" disabled={!agree} value="Register" />
                 <p className="text-muted text-center mb-0 mt-3">
                     Already have an account? <Link className='register-link' to={'/login'}>Login</Link>
                 </p>
