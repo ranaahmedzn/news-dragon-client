@@ -18,7 +18,10 @@ const NavigationBar = () => {
                 </Nav>
                 <div className='d-flex align-items-center gap-3'>
                     {
-                        user && <span><FaUserCircle style={{ fontSize: '36px' }} /></span>
+                        user?.photoURL && <img className='profile-img' src="https://i.ibb.co/py09c0j/kashem.jpg" alt="" />
+                    }
+                    {
+                        user && !user?.photoURL && <span><FaUserCircle style={{ fontSize: '36px' }} /></span>
                     }
                     {
                         user ? <Button className='btn-logout' variant="dark">Logout</Button>

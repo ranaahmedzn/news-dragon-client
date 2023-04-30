@@ -2,6 +2,11 @@
     text-decoration: none;
     font-weight: 600;
 }
+.profile-img{
+    width: 42px;
+    border-radius: 50%;
+    border: 2px solid #403F3F;
+}
 .btn-login, .btn-logout{
     padding: 10px 25px;
     background: #403F3F;
