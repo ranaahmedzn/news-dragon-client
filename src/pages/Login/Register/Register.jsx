@@ -27,11 +27,11 @@ const Register = () => {
                     <Form.Control type="password" name='password' id='password' placeholder="Enter your password" required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                    <Form.Check type="checkbox" label="Accept Terms & Conditions" />
                 </Form.Group>
                 <input className='btn-submit' type="submit" value="Login" />
                 <p className="text-muted text-center mb-0 mt-3">
-                    Already have an account? <Link className='register-link' to={'/login/login'}>Login</Link>
+                    Already have an account? <Link className='register-link' to={'/login'}>Login</Link>
                 </p>
             </Form>
         </div>

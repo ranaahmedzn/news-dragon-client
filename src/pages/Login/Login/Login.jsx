@@ -21,7 +21,7 @@ const Login = () => {
                 </Form.Group>
                 <input className='btn-submit' type="submit" value="Login" />
                 <p className="text-muted text-center mb-0 mt-3">
-                    Do not have an account? <Link className='login-link' to={'/login/register'}>Register</Link>
+                    Do not have an account? <Link className='login-link' to={'/register'}>Register</Link>
                 </p>
             </Form>
         </div>

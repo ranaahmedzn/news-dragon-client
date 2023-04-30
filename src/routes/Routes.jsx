@@ -10,12 +10,12 @@ import Register from "../pages/Login/Register/Register";
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to='/category/0' ></Navigate>
-    },
-    {
-        path: '/login',
         element: <LoginLayout />,
         children: [
+            {
+                path: '/',
+                element: <Navigate to='/category/0' ></Navigate>
+            },
             {
                 path: 'login',
                 element: <Login />

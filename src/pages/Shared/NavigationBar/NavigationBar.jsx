@@ -6,7 +6,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 import { FaUserCircle } from "react-icons/fa";
 
 const NavigationBar = () => {
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     return (
         <Navbar style={{ backgroundColor: '#F3F3F3' }}>
@@ -18,13 +18,13 @@ const NavigationBar = () => {
                 </Nav>
                 <div className='d-flex align-items-center gap-3'>
                     {
-                        user && <span><FaUserCircle style={{fontSize: '36px'}} /></span>
+                        user && <span><FaUserCircle style={{ fontSize: '36px' }} /></span>
                     }
                     {
                         user ? <Button className='btn-logout' variant="dark">Logout</Button>
-                            : <Button className='btn-login' variant="dark">
-                                <Link className='text-decoration-none text-white' to='/login/login'>Login</Link>
-                              </Button>
+                            : <Link to='/login'>
+                                <Button className='btn-login' variant="dark">Login</Button>
+                            </Link>
                     }
                 </div>
             </Container>
