@@ -1,23 +1,47 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Login.css'
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
+import { toast } from 'react-hot-toast';
 
 const Login = () => {
+    const {signIn} = useContext(AuthContext)
+
+    const handleLogin = (event) => {
+        event.preventDefault()
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password)
+
+        signIn(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            toast.success('Login successful!')
+            form.reset()
+        })
+        .catch(error => {
+            console.log(error.message)
+        })
+    }
+
     return (
         <div style={{ width: '100%', minHeight: '100vh' }} className='py-5'>
-            <Form className='form-container'>
+            <Form onSubmit={handleLogin} className='form-container'>
                 <h4 className='text-center'>Login your account</h4>
                 <hr className='mb-4' />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name='email' id='email' placeholder="Enter your email" required/>
+                    <Form.Control type="email" name='email' className='commonInput' placeholder="Enter your email" required/>
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name='password' id='password' placeholder="Enter your password" required/>
+                    <Form.Control type="password" name='password' className='commonInput' placeholder="Enter your password" required/>
                 </Form.Group>
                 <input className='btn-submit' type="submit" value="Login" />
                 <p className="text-muted text-center mb-0 mt-3">
